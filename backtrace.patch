@@ -1,0 +1,64 @@
+From 563ebdf7c2764861738e9ffa44f3e199651072c2 Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?Nicol=C3=A1s=20Ojeda=20B=C3=A4r?= <n.oje.bar@gmail.com>
+Date: Tue, 12 Nov 2019 20:14:12 +0100
+Subject: [PATCH 1/2] Add missing defines to compatibility.h
+
+---
+ runtime/caml/compatibility.h | 14 ++++++++++++++
+ 1 file changed, 14 insertions(+)
+
+diff --git a/runtime/caml/compatibility.h b/runtime/caml/compatibility.h
+index 240cfbe31a96..3cda9260b319 100644
+--- a/runtime/caml/compatibility.h
++++ b/runtime/caml/compatibility.h
+@@ -23,11 +23,25 @@
+ #define caml_stat_heap_size Bsize_wsize(caml_stat_heap_wsz)
+ 
+ /* global variables moved to Caml_state in 4.10.0 */
++#define caml_stat_top_heap_wsz (Caml_state_field(stat_top_heap_wsz))
++#define caml_stat_heap_wsz (Caml_state_field(stat_heap_wsz))
+ #define caml_young_start (Caml_state_field(young_start))
+ #define caml_young_end (Caml_state_field(young_end))
+ #define caml_young_ptr (Caml_state_field(young_ptr))
+ #define caml_young_limit (Caml_state_field(young_limit))
+ #define caml_local_roots (Caml_state_field(local_roots))
++#define caml_backtrace_active (Caml_state_field(backtrace_active))
++#define caml_backtrace_pos (Caml_state_field(backtrace_pos))
++#define caml_backtrace_buffer (Caml_state_field(backtrace_buffer))
++#define caml_backtrace_last_exn (Caml_state_field(backtrace_last_exn))
++#define caml_compare_unordered (Caml_state_field(compare_unordered))
++#define caml_external_raise (Caml_state_field(external_raise))
++#define caml_stack_low (Caml_state_field(stack_low))
++#define caml_stack_high (Caml_state_field(stack_high))
++#define caml_stack_threshold (Caml_state_field(stack_threshold))
++#define caml_extern_sp (Caml_state_field(extern_sp))
++#define caml_trapsp (Caml_state_field(trapsp))
++#define caml_trap_barrier (Caml_state_field(trap_barrier))
+ 
+ #ifndef CAML_NAME_SPACE
+ 
+
+From 85343b0d6cdcc0962a196fe3399a6b564ab0cd63 Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?Nicol=C3=A1s=20Ojeda=20B=C3=A4r?= <n.oje.bar@gmail.com>
+Date: Thu, 5 Dec 2019 20:31:15 +0100
+Subject: [PATCH 2/2] Remove extern declaration caml_compare_unordered from
+ custom.h
+
+---
+ runtime/caml/custom.h | 3 ---
+ 1 file changed, 3 deletions(-)
+
+diff --git a/runtime/caml/custom.h b/runtime/caml/custom.h
+index 56a9a604d36f..374d90ecc283 100644
+--- a/runtime/caml/custom.h
++++ b/runtime/caml/custom.h
+@@ -66,9 +66,6 @@ CAMLextern value caml_alloc_custom_mem(struct custom_operations * ops,
+ 
+ CAMLextern void caml_register_custom_operations(struct custom_operations * ops);
+ 
+-CAMLextern int caml_compare_unordered;
+-  /* Used by custom comparison to report unordered NaN-like cases. */
+-
+ #ifdef CAML_INTERNALS
+ extern struct custom_operations * caml_find_custom_operations(char * ident);
+ extern struct custom_operations *
