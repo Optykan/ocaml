@@ -22,7 +22,7 @@
 #define caml_stat_top_heap_size Bsize_wsize(caml_stat_top_heap_wsz)
 #define caml_stat_heap_size Bsize_wsize(caml_stat_heap_wsz)
 
-/* global variables moved to Caml_state in 4.10.0 */More actions
+/* global variables moved to Caml_state in 4.10.0 */
 #define caml_stat_top_heap_wsz (Caml_state_field(stat_top_heap_wsz))
 #define caml_stat_heap_wsz (Caml_state_field(stat_heap_wsz))
 #define caml_young_start (Caml_state_field(young_start))
@@ -42,7 +42,6 @@
 #define caml_extern_sp (Caml_state_field(extern_sp))
 #define caml_trapsp (Caml_state_field(trapsp))
 #define caml_trap_barrier (Caml_state_field(trap_barrier))
-
 
 #ifndef CAML_NAME_SPACE
 
