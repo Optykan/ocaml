@@ -7,7 +7,7 @@
   ],
   "esy": {
     "build": [
-      "./esy-configure -no-cfi -prefix $cur__install",
+      "./esy-configure -no-cfi -cc \"gcc -Wno-implicit-function-declaration\" -prefix $cur__install",
       "./esy-build"
     ],
     "buildsInSource": true,

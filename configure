@@ -424,7 +424,7 @@ esac
 mkexe="\$(CC) \$(CFLAGS) \$(CPPFLAGS) \$(LDFLAGS)"
 mkexedebugflag="-g"
 common_cflags=""
-common_cppflags=""
+common_cppflags="-Wno-implicit-function-declaration"
 internal_cflags=""
 internal_cppflags=""
 ocamlc_cflags=""
