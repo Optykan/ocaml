@@ -7,11 +7,7 @@
   ],
   "esy": {
     "build": [
-      [
-        "bash",
-        "-c",
-        "true"
-      ],
+      ["bash", "-c", "#{os == 'linux' ? 'patch -p1 < alt-signal-stack.patch': 'true'}"],
       "./esy-configure --prefix $cur__install",
       "./esy-build"
     ],
